@@ -5,8 +5,10 @@ import LoginForm from '../components/LoginForm.vue'
 const router = useRouter()
 
 const handleLogin = (credentials) => {
+  // In this demo we store the username locally to represent "logged in" state.
+  localStorage.setItem('username', credentials.username)
+  window.dispatchEvent(new CustomEvent('auth-changed'))
   alert(`Logged in with username: ${credentials.username}`)
-  // In real app: authenticate → save token → redirect
   router.push('/')
 }
 </script>

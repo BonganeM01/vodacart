@@ -1,4 +1,27 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const username = ref(localStorage.getItem('username') || '')
+const isLoggedIn = ref(!!username.value)
+
+const updateAuth = () => {
+  username.value = localStorage.getItem('username') || ''
+  isLoggedIn.value = !!username.value
+}
+
+const logout = () => {
+  localStorage.removeItem('username')
+  updateAuth()
+  window.dispatchEvent(new CustomEvent('auth-changed'))
+  router.push('/')
+}
+
+onMounted(() => {
+  window.addEventListener('auth-changed', updateAuth)
+  window.addEventListener('cart-changed', () => {})
+})
 </script>
 
 <template>
@@ -7,8 +30,12 @@
       <section class="logo-section">VodaCart</section>
       <section class="menu-section">
         <a href="/" class="link-item">Home</a>
-        <a href="/login" class="link-item">Login</a>
+        <a href="/cart" class="link-item">Cart</a>
         <a href="/checkout" class="link-item">Checkout</a>
+        <a v-if="!isLoggedIn" href="/register" class="link-item">Register</a>
+        <a v-if="!isLoggedIn" href="/login" class="link-item">Login</a>
+        <div v-if="isLoggedIn" class="greeting">Hi, {{ username }}</div>
+        <button v-if="isLoggedIn" class="logout-button" @click="logout">Logout</button>
       </section>
     </nav>
   </header>

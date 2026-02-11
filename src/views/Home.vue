@@ -7,7 +7,8 @@ const products = ref([])
 
 const fetchProducts = async () => {
   try {
-    const response = await axios.get('https://fakestoreapi.com/products/category/electronics')
+    const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+    const response = await axios.get(`${base}/api/products`)
     products.value = response.data
   } catch (error) {
     console.error('Error fetching products:', error)
@@ -15,8 +16,21 @@ const fetchProducts = async () => {
 }
 
 const handleAddToCart = (product) => {
-  alert(`Added ${product.title} to cart!`)
-  // Future: add to cart store / state
+  try {
+    const raw = localStorage.getItem('cart') || '[]'
+    const current = JSON.parse(raw)
+    const existing = current.find(p => p.id === product.id)
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + 1
+    } else {
+      current.push({ ...product, quantity: 1 })
+    }
+    localStorage.setItem('cart', JSON.stringify(current))
+    alert(`Added ${product.title} to cart!`)
+    window.dispatchEvent(new CustomEvent('cart-changed'))
+  } catch (err) {
+    console.error('Failed to add to cart', err)
+  }
 }
 
 onMounted(() => {
