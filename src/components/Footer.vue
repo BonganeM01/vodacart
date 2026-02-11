@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <footer class="footer-section">
     <section class="copyright-section">&copy; 2026 VodaCart. All rights reserved.</section>
@@ -7,9 +10,6 @@
     </section>
   </footer>
 </template>
-
-<script setup>
-</script>
 
 <style scoped>
 .footer-section {

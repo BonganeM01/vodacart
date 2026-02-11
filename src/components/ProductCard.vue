@@ -1,3 +1,14 @@
+<script setup>
+defineProps({
+  product: {
+    type: Object,
+    required: true
+  }
+})
+
+const emit = defineEmits(['add-to-cart'])
+</script>
+
 <template>
   <article class="product-card-section">
     <section class="image-section">
@@ -12,17 +23,6 @@
     </section>
   </article>
 </template>
-
-<script setup>
-defineProps({
-  product: {
-    type: Object,
-    required: true
-  }
-})
-
-const emit = defineEmits(['add-to-cart'])
-</script>
 
 <style scoped>
 .product-card-section {

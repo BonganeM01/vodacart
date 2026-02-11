@@ -1,12 +1,3 @@
-<template>
-  <main class="checkout-main-section">
-    <section class="form-section">
-      <h2>Complete Your Payment</h2>
-      <PaymentForm @pay="handlePayment" />
-    </section>
-  </main>
-</template>
-
 <script setup>
 import { useRouter } from 'vue-router'
 import PaymentForm from '../components/PaymentForm.vue'
@@ -19,6 +10,15 @@ const handlePayment = (details) => {
   router.push('/')
 }
 </script>
+
+<template>
+  <main class="checkout-main-section">
+    <section class="form-section">
+      <h2>Complete Your Payment</h2>
+      <PaymentForm @pay="handlePayment" />
+    </section>
+  </main>
+</template>
 
 <style scoped>
 .checkout-main-section {

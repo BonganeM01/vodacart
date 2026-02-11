@@ -1,12 +1,3 @@
-<template>
-  <main class="login-main-section">
-    <section class="form-section">
-      <h2>Login to Your Account</h2>
-      <LoginForm @login="handleLogin" />
-    </section>
-  </main>
-</template>
-
 <script setup>
 import { useRouter } from 'vue-router'
 import LoginForm from '../components/LoginForm.vue'
@@ -19,6 +10,15 @@ const handleLogin = (credentials) => {
   router.push('/')
 }
 </script>
+
+<template>
+  <main class="login-main-section">
+    <section class="form-section">
+      <h2>Login to Your Account</h2>
+      <LoginForm @login="handleLogin" />
+    </section>
+  </main>
+</template>
 
 <style scoped>
 .login-main-section {

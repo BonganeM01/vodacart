@@ -1,20 +1,3 @@
-<template>
-  <main class="home-main-section">
-    <section class="hero-section">
-      <h1>Welcome to VodaCart</h1>
-      <p>Shop the best electronics!</p>
-    </section>
-    <section class="products-section">
-      <ProductCard
-        v-for="product in products"
-        :key="product.id"
-        :product="product"
-        @add-to-cart="handleAddToCart"
-      />
-    </section>
-  </main>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
@@ -40,6 +23,23 @@ onMounted(() => {
   fetchProducts()
 })
 </script>
+
+<template>
+  <main class="home-main-section">
+    <section class="hero-section">
+      <h1>Welcome to VodaCart</h1>
+      <p>Shop the best electronics!</p>
+    </section>
+    <section class="products-section">
+      <ProductCard
+        v-for="product in products"
+        :key="product.id"
+        :product="product"
+        @add-to-cart="handleAddToCart"
+      />
+    </section>
+  </main>
+</template>
 
 <style scoped>
 .home-main-section {

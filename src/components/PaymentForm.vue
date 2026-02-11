@@ -1,3 +1,21 @@
+<script setup>
+import { ref } from 'vue'
+
+const cardNumber = ref('')
+const expiry = ref('')
+const cvv = ref('')
+
+const emit = defineEmits(['pay'])
+
+const handleSubmit = () => {
+  emit('pay', {
+    cardNumber: cardNumber.value,
+    expiry: expiry.value,
+    cvv: cvv.value
+  })
+}
+</script>
+
 <template>
   <form class="payment-form-section" @submit.prevent="handleSubmit">
     <section class="input-section">
@@ -17,24 +35,6 @@
     </section>
   </form>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const cardNumber = ref('')
-const expiry = ref('')
-const cvv = ref('')
-
-const emit = defineEmits(['pay'])
-
-const handleSubmit = () => {
-  emit('pay', {
-    cardNumber: cardNumber.value,
-    expiry: expiry.value,
-    cvv: cvv.value
-  })
-}
-</script>
 
 <style scoped>
 .payment-form-section {

@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <header class="header-section">
     <nav class="nav-section">
@@ -10,9 +13,6 @@
     </nav>
   </header>
 </template>
-
-<script setup>
-</script>
 
 <style scoped>
 .header-section {

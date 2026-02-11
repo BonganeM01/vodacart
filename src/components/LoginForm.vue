@@ -1,3 +1,16 @@
+<script setup>
+import { ref } from 'vue'
+
+const username = ref('')
+const password = ref('')
+
+const emit = defineEmits(['login'])
+
+const handleSubmit = () => {
+  emit('login', { username: username.value, password: password.value })
+}
+</script>
+
 <template>
   <form class="login-form-section" @submit.prevent="handleSubmit">
     <section class="input-section">
@@ -13,19 +26,6 @@
     </section>
   </form>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const username = ref('')
-const password = ref('')
-
-const emit = defineEmits(['login'])
-
-const handleSubmit = () => {
-  emit('login', { username: username.value, password: password.value })
-}
-</script>
 
 <style scoped>
 .login-form-section {
