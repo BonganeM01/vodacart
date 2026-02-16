@@ -14,8 +14,8 @@ const handleSubmit = () => {
 <template>
   <form class="login-form-section" @submit.prevent="handleSubmit">
     <section class="input-section">
-      <label for="username">Username:</label>
-      <input id="username" v-model="username" type="text" required>
+      <label for="email">Email:</label>
+      <input id="email" v-model="username" type="email" required>
     </section>
     <section class="input-section">
       <label for="password">Password:</label>

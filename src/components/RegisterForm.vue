@@ -4,16 +4,20 @@ import { ref } from 'vue'
 const username = ref('')
 const email = ref('')
 const password = ref('')
-
+const fullname = ref('')
 const emit = defineEmits(['register'])
 
 const handleSubmit = () => {
-  emit('register', { username: username.value, email: email.value, password: password.value })
+  emit('register', { fullname: fullname.value, username: username.value, email: email.value, password: password.value })
 }
 </script>
 
 <template>
   <form class="register-form-section" @submit.prevent="handleSubmit">
+    <section class="input-section">
+      <label for="fullname">Full Name:</label>
+      <input id="fullname" v-model="fullname" type="text" required>
+    </section>
     <section class="input-section">
       <label for="username">Username:</label>
       <input id="username" v-model="username" type="text" required>
